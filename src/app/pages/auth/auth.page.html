@@ -42,7 +42,7 @@
 
         <div class="validators">
 
-          @if(form.controls.password.errors?.['required']) {
+          @if(form.controls.password.errors['required']) {
             <div>La contraseña es requerida.</div>
           }
 
@@ -50,7 +50,7 @@
         
       }
 
-      <p class="ion-text-end" routerLink="/forgot-password">Olvide mi contraseña</p>
+      <p class="ion-text-end forgotPassword" routerLink="/forgot-password">Olvide mi contraseña</p>
 
       <ion-button expand="block" node="ios" class="submit" type="submit" [disabled]="form.invalid">
         <ion-icon slot="start" name="log-in-outline"></ion-icon>

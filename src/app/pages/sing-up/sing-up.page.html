@@ -1,13 +1,92 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>sing-up</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Registro"/>
+<ion-content>
+  
+  <div class="d-flex-center">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sing-up</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+      <app-logo />
+
+      <!-- /* Nombre */ -->
+
+      <app-custom-input 
+      icon="person-outline"
+      autocomplete="name"
+      [control]="form.controls.name"
+      type="text"
+      label="Nombre: "
+      />
+      
+      @if (form.controls.name.errors && form.controls.name.touched) {
+
+        <div class="validators">
+
+          @if(form.controls.name.errors['required']) {
+            <div>El correo es requerido.</div>
+          }
+
+          @if(form.controls.name.errors['minlenght']){
+            <div>El nombre debe tener minimo 6 caracteres.</div>
+          }
+
+        </div>
+
+      }
+
+      <!-- /* Email */ -->
+
+      <app-custom-input 
+      icon="mail-outline"
+      autocomplete="email"
+      [control]="form.controls.email"
+      type="email"
+      label="Correo: "
+      />
+      
+      @if (form.controls.email.errors && form.controls.email.touched) {
+
+        <div class="validators">
+
+          @if(form.controls.email.errors['required']) {
+            <div>El correo es requerido.</div>
+          }
+
+          @if(form.controls.email.errors['email']){
+            <div>Ingrese un correo valido, por favor.</div>
+          }
+
+        </div>
+
+      }
+
+      <!-- /* Password */ -->
+      
+      <app-custom-input 
+      icon="lock-closed-outline"
+      [control]="form.controls.password"
+      type="password"
+      label="Contraseña: "
+      />
+
+      @if (form.controls.email.errors && form.controls.email.touched) {
+
+        <div class="validators">
+
+          @if(form.controls.password.errors['required']) {
+            <div>La contraseña es requerida.</div>
+          }
+
+        </div>
+        
+      }
+
+      <ion-button expand="block" node="ios" class="submit" type="submit" [disabled]="form.invalid">
+        <ion-icon slot="start" name="person-add-outline"></ion-icon>
+        Registrate
+      </ion-button>
+     
+    </form>
+
+  </div>
+
 </ion-content>
